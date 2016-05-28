@@ -1,5 +1,5 @@
 angular.module('conway.home', [])
-.controller('HomeController', function($scope, $location, $cookies, universeData, createUniverse) {
+.controller('HomeController', function($scope, $location, universeData, createUniverse) {
   // load inital data for start state of universe
   $scope.data = universeData;
 
@@ -7,16 +7,20 @@ angular.module('conway.home', [])
   var node = '.startState';
 
   // draw inital random universe on dom and allow user to make changes
+  // by clicking on rectangles which toggles the corresponding
+  // state value and color
   createUniverse.drawGrid(node, $scope.data.startState);
-
+  createUniverse.makeClickable(node, $scope.data.startState);
+ 
   // update the size of universe when row and column is changed
-  // generates a ndw random universe of correct size
+  // generates a new random universe of correct size
   // clears DOM of old universe
   // draws new universe on DOM
   $scope.resize = function() {
     $scope.data.startState = createUniverse.genUniverse($scope.data.rows, $scope.data.cols);
     createUniverse.clearGrid(node);
     createUniverse.drawGrid(node, $scope.data.startState);
+    createUniverse.makeClickable(node, $scope.data.startState);
   };
 
   // start the iterations, evolving the universe
@@ -32,23 +36,6 @@ angular.module('conway.home', [])
     createUniverse.drawGrid(node, $scope.data.startState);
   };
 
-  // when a rectangle is clicked toggle the corresponding
-  // state value and color
-  d3.selectAll('rect').on('click', function(e){
-    $scope.data.startState[e.y][e.x] = $scope.data.startState[e.y][e.x] ? 0 : 1;
-    e.alive = e.alive ? 0 : 1;
-    var color = e.alive ? 'red' : 'white';
-    this.setAttribute('fill', color);
-  });
-
-  // $scope.inputStart = function() {
-  //   $cookies.putObject('rows', $scope.rows);
-  //   $cookies.putObject('cols', $scope.cols);
-  //   $cookies.putObject('timeInc', $scope.timeIncrement);
-
-  //   $location.url('/entry');
-    
-  // };
 
 });
 

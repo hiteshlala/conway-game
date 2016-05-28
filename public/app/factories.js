@@ -16,7 +16,6 @@ angular.module('conway')
     return cells;
   };
 
-
   // draw rectangular grid with d3 that corresponds to the
   // input grid, the color of each square will corresond
   // to the value at a grid location 1 = color, 0 = no-color
@@ -34,16 +33,17 @@ angular.module('conway')
       });
     });
 
-    
-    var width = 400;
-    var height = 400;
-    var xfact = Math.round(width/matrix.length);
-    var yfact = Math.round(height/matrix[0].length);
+    var maxWidth = document.documentElement.clientWidth;
+    var maxHeigth =  document.documentElement.clientHeight;
+    var width = maxWidth * 0.8;
+    var height = maxHeigth * 0.8;
+    var xfact = Math.round(width/matrix[0].length);
+    var yfact = Math.round(height/matrix.length);
 
     var svg = d3.select(node)
       .append('svg')
-      .attr('width', width)
-      .attr('height', height)
+      .attr('width', width )
+      .attr('height', height )
       .selectAll('rect')
       .data(cell)
       .attr('x', function(d){return d.x * xfact;})
@@ -69,6 +69,15 @@ angular.module('conway')
     d3.select(node).selectAll('*').remove();
   };
 
+  // adds click event listener on all cells in universe
+  var makeClickable = function(node, universe) {
+    d3.select(node).selectAll('rect').on('click', function(e){
+      universe[e.y][e.x] = universe[e.y][e.x] ? 0 : 1;
+      e.alive = e.alive ? 0 : 1;
+      var color = e.alive ? 'red' : 'white';
+      this.setAttribute('fill', color);
+    });
+  };
 
   // generate a matrix of empty cells
   var genEmptyCells = function(m, n) {
@@ -118,7 +127,8 @@ angular.module('conway')
     genUniverse: genUniverse,
     nextGeneration: nextGeneration,
     drawGrid: drawGrid,
-    clearGrid: clearGrid
+    clearGrid: clearGrid,
+    makeClickable: makeClickable
   };
 
 })
@@ -134,6 +144,5 @@ angular.module('conway')
     currentState:[[]]
   };
  
-
   return data;
 });
