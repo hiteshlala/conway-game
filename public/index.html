@@ -1,0 +1,28 @@
+<!doctype html>
+<html ng-app='conway'>
+  <head>
+    <title>Conway Game</title>
+    <link rel="stylesheet" type="text/css" src="css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular-cookies.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular-route.js"></script>
+    
+    <!-- app files -->
+    <script src="app/home/homeController.js"></script>
+    <script src="app/start/startController.js"></script>
+    <script src="app/app.js"></script>
+    <script src="app/factories.js"></script>
+
+    <!-- other libraries -->
+    <script src="//d3js.org/d3.v3.min.js" charset="utf-8"></script>
+  </head>
+  <body>
+    <header>
+      <h1>Conway Game</h1>
+      <p></p>
+    </header>
+
+    <div ng-view></div>
+  
+  </body>
+</html>

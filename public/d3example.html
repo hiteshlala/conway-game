@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html>
+<body>
+<style>
+
+path {
+  fill: none;
+  stroke: #000;
+  stroke-width: 3px;
+}
+
+circle {
+  fill: steelblue;
+  stroke: #fff;
+  stroke-width: 3px;
+}
+
+</style>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script>
+
+var gameBoard = [
+  {typeOfSpot:"city",colorOfSpot:"pink",users:[],gymLeader:0,row:0,col:1},
+  {typeOfSpot:"city",colorOfSpot:"pink",users:[],gymLeader:5,row:0,col:2},
+  {typeOfSpot:"pokemon",colorOfSpot:"pink",users:[],gymLeader:6,row:0,col:3},
+  {typeOfSpot:"pokemon",colorOfSpot:"pink",users:[],gymLeader:7,row:0,col:4},
+  {typeOfSpot:"city",colorOfSpot:"pink",users:[],gymLeader:7,row:0,col:5},
+  {typeOfSpot:"city",colorOfSpot:"pink",users:[],gymLeader:4,row:0,col:6},
+  {typeOfSpot:"event",colorOfSpot:"pink",users:[],gymLeader:5,row:0,col:7},
+  {typeOfSpot:"pokemon",colorOfSpot:"pink",users:[],gymLeader:1,row:0,col:8},
+  {typeOfSpot:"pokemon",colorOfSpot:"pink",users:[],gymLeader:6,row:0,col:9},
+  {typeOfSpot:"pokemon",colorOfSpot:"pink",users:[],gymLeader:1,row:0,col:10},
+  {typeOfSpot:"city",colorOfSpot:"pink",users:[],gymLeader:6,row:0,col:11},
+  {typeOfSpot:"pokemon",colorOfSpot:"pink",users:[],gymLeader:5,row:0,col:12},
+  {typeOfSpot:"event",colorOfSpot:"pink",users:[],gymLeader:1,row:0,col:13},
+  {typeOfSpot:"event",colorOfSpot:"pink",users:[],gymLeader:3,row:0,col:14},
+  {typeOfSpot:"event",colorOfSpot:"pink",users:[],gymLeader:1,row:0,col:15},
+  {typeOfSpot:"city",colorOfSpot:"pink",users:[],gymLeader:5,row:0,col:16},
+  {typeOfSpot:"city",colorOfSpot:"pink",users:[],gymLeader:2,row:0,col:17},
+  {typeOfSpot:"city",colorOfSpot:"green",users:[],gymLeader:7,row:1,col:18},
+  {typeOfSpot:"event",colorOfSpot:"green",users:[],gymLeader:2,row:1,col:0},
+  {typeOfSpot:"event",colorOfSpot:"green",users:[],gymLeader:6,row:1,col:1},
+  {typeOfSpot:"pokemon",colorOfSpot:"green",users:[],gymLeader:6,row:1,col:2},
+  {typeOfSpot:"city",colorOfSpot:"green",users:[],gymLeader:5,row:1,col:3},
+  {typeOfSpot:"pokemon",colorOfSpot:"green",users:[],gymLeader:1,row:1,col:4},
+  {typeOfSpot:"event",colorOfSpot:"green",users:[],gymLeader:5,row:1,col:5},
+  {typeOfSpot:"event",colorOfSpot:"green",users:[],gymLeader:3,row:1,col:6},
+  {typeOfSpot:"event",colorOfSpot:"green",users:[],gymLeader:7,row:1,col:7},
+  {typeOfSpot:"event",colorOfSpot:"green",users:[],gymLeader:1,row:1,col:8},
+  {typeOfSpot:"pokemon",colorOfSpot:"green",users:[],gymLeader:2,row:1,col:9},
+  {typeOfSpot:"city",colorOfSpot:"green",users:[],gymLeader:3,row:1,col:10},
+  {typeOfSpot:"pokemon",colorOfSpot:"green",users:[],gymLeader:7,row:1,col:11},
+  {typeOfSpot:"city",colorOfSpot:"green",users:[],gymLeader:3,row:1,col:12},
+  {typeOfSpot:"event",colorOfSpot:"green",users:[],gymLeader:3,row:1,col:13},
+  {typeOfSpot:"city",colorOfSpot:"green",users:[],gymLeader:3,row:1,col:14},
+  {typeOfSpot:"pokemon",colorOfSpot:"green",users:[],gymLeader:5,row:1,col:15},
+  {typeOfSpot:"pokemon",colorOfSpot:"green",users:[],gymLeader:7,row:1,col:16},
+  {typeOfSpot:"city",colorOfSpot:"blue",users:[],gymLeader:7,row:2,col:17},
+  {typeOfSpot:"pokemon",colorOfSpot:"blue",users:[],gymLeader:2,row:2,col:18},
+  {typeOfSpot:"city",colorOfSpot:"blue",users:[],gymLeader:7,row:2,col:0},
+  {typeOfSpot:"pokemon",colorOfSpot:"blue",users:[],gymLeader:5,row:2,col:1},
+  {typeOfSpot:"city",colorOfSpot:"blue",users:[],gymLeader:2,row:2,col:2},
+  {typeOfSpot:"event",colorOfSpot:"blue",users:[],gymLeader:0,row:2,col:3},
+  {typeOfSpot:"event",colorOfSpot:"blue",users:[],gymLeader:0,row:2,col:4},
+  {typeOfSpot:"pokemon",colorOfSpot:"blue",users:[],gymLeader:3,row:2,col:5},
+  {typeOfSpot:"city",colorOfSpot:"blue",users:[],gymLeader:2,row:2,col:6},
+  {typeOfSpot:"event",colorOfSpot:"blue",users:[],gymLeader:4,row:2,col:7},
+  {typeOfSpot:"pokemon",colorOfSpot:"blue",users:[],gymLeader:3,row:2,col:8},
+  {typeOfSpot:"pokemon",colorOfSpot:"blue",users:[],gymLeader:3,row:2,col:9},
+  {typeOfSpot:"event",colorOfSpot:"blue",users:[],gymLeader:7,row:2,col:10},
+  {typeOfSpot:"pokemon",colorOfSpot:"blue",users:[],gymLeader:2,row:2,col:11},
+  {typeOfSpot:"event",colorOfSpot:"blue",users:[],gymLeader:0,row:2,col:12},
+  {typeOfSpot:"city",colorOfSpot:"blue",users:[],gymLeader:3,row:2,col:13},
+  {typeOfSpot:"city",colorOfSpot:"blue",users:[],gymLeader:7,row:2,col:14},
+  {typeOfSpot:"pokemon",colorOfSpot:"blue",users:[],gymLeader:7,row:2,col:15},
+  {typeOfSpot:"event",colorOfSpot:"red",users:[],gymLeader:5,row:3,col:16},
+  {typeOfSpot:"city",colorOfSpot:"red",users:[],gymLeader:7,row:3,col:17},
+  {typeOfSpot:"pokemon",colorOfSpot:"red",users:[],gymLeader:5,row:3,col:18},
+  {typeOfSpot:"pokemon",colorOfSpot:"red",users:[],gymLeader:6,row:3,col:0},
+  {typeOfSpot:"event",colorOfSpot:"red",users:[],gymLeader:7,row:3,col:1},
+  {typeOfSpot:"pokemon",colorOfSpot:"red",users:[],gymLeader:2,row:3,col:2},
+  {typeOfSpot:"pokemon",colorOfSpot:"red",users:[],gymLeader:4,row:3,col:3},
+  {typeOfSpot:"pokemon",colorOfSpot:"red",users:[],gymLeader:7,row:3,col:4},
+  {typeOfSpot:"pokemon",colorOfSpot:"red",users:[],gymLeader:7,row:3,col:5},
+  {typeOfSpot:"city",colorOfSpot:"red",users:[],gymLeader:1,row:3,col:6},
+  {typeOfSpot:"event",colorOfSpot:"red",users:[],gymLeader:4,row:3,col:7},
+  {typeOfSpot:"pokemon",colorOfSpot:"red",users:[],gymLeader:5,row:3,col:8},
+  {typeOfSpot:"event",colorOfSpot:"red",users:[],gymLeader:6,row:3,col:9},
+  {typeOfSpot:"city",colorOfSpot:"red",users:[],gymLeader:6,row:3,col:10},
+  {typeOfSpot:"city",colorOfSpot:"red",users:[],gymLeader:5,row:3,col:11},
+  {typeOfSpot:"event",colorOfSpot:"red",users:[],gymLeader:3,row:3,col:12},
+  {typeOfSpot:"event",colorOfSpot:"red",users:[],gymLeader:2,row:3,col:13},
+  {typeOfSpot:"city",colorOfSpot:"red",users:[],gymLeader:7,row:3,col:14},
+  {typeOfSpot:"pokemon",colorOfSpot:"red",users:[],gymLeader:6,row:3,col:15},
+  {typeOfSpot:"city",colorOfSpot:"red",users:[],gymLeader:0,row:3,col:16}
+
+];
+
+// var points = [
+//   [480, 200],
+//   [580, 400],
+//   [680, 100],
+//   [780, 300],
+//   [180, 300],
+//   [280, 100],
+//   [380, 400]
+// ];
+var width = 1200;
+var height= 800;
+var wfactor = width/20;
+var hfactor = height/4.3;
+
+var randNoise = function(){
+  var neg = Math.random() > 0.5 ? -1 : 1;
+  return neg * Math.random()*30; 
+};
+
+var points = [];
+gameBoard.forEach(function(point, p) {
+  points.push([ 40 + wfactor * point.col + randNoise(), 50 + hfactor * point.row + randNoise()]);
+});
+
+var svg = d3.select("body").append("svg")
+    .attr("width", width)
+    .attr("height", height);
+
+var path = svg.append("path")
+    .data([points])
+    .attr("d", d3.svg.line()
+      .tension(3) // Catmull–Rom
+      .interpolate('linear'));//"cardinal-closed"));
+    
+svg.selectAll(".point")
+    .data(points)
+  .enter().append("circle")
+    .attr("r", 12)
+    .attr("pink", function(d){return d;})
+    .attr("transform", function(d) { console.log(d); return "translate(" + d + ")"; });
+
+var circle = svg.append("circle")
+    .attr("r", 13)
+    .attr("transform", "translate(" + points[0] + ")");
+
+var circle2 = svg.append("circle")
+    .attr("r", 13)
+    .style('fill', 'red')
+    .attr("transform", "translate(" + points[0] + ")");
+
+transition();
+
+function transition() {
+  console.log(path);
+  circle.transition()
+      .duration(10000)
+      .attrTween("transform", translateAlong(path.node()))
+      // .each("end", transition);
+
+  circle2.transition()
+      .duration(12000)
+      .attrTween("transform", translateAlong(path.node(2)))
+      // .each("end", transition);
+}
+
+// Returns an attrTween for translating along the specified path element.
+function translateAlong(path) {
+  var l = path.getTotalLength();
+  return function(d, i, a) {
+    return function(t) {
+      var p = path.getPointAtLength(t * l);
+      return "translate(" + p.x + "," + p.y + ")";
+    };
+  };
+}
+
+</script>
+
+</body>
+</html>

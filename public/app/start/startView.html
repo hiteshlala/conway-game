@@ -1,0 +1,19 @@
+<div>
+  <a href='#/'><div>Back</div></a>
+  <p>{{data}}</p>
+  <ul>
+    <li ng-repeat='row in startState track by $index'>
+      {{row}} has elements {{$index}}
+      <ul>
+      <li ng-repeat='item in row[$index]'>
+        {{item}} should be numbers
+      </li>
+      </ul>
+    </li>
+  </ul>
+    <p>Create a clickable grid of squares using d3 each click will toggle state</p>
+
+    <div class='startCondition'></div>
+    <input type='button' ng-click='dosomething()' value="testing"/>
+
+</div>
