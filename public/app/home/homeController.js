@@ -16,10 +16,14 @@ angular.module('conway.home', [])
   // generates a new universe of correct size a random one if random set to true
   // clears DOM of old universe then draws new universe on DOM
   $scope.resize = function(random) {
-    $scope.data.startState = createUniverse.genUniverse($scope.data.rows, $scope.data.cols, random);
-    createUniverse.clearGrid(node);
-    createUniverse.drawGrid(node, $scope.data.startState);
-    createUniverse.makeClickable(node, $scope.data.startState);
+    // make sure values are valid
+    if($scope.data.rows >= 1 && $scope.data.rows <= 50 &&
+      $scope.data.cols >= 1 && $scope.data.cols <= 100 ) {
+      $scope.data.startState = createUniverse.genUniverse($scope.data.rows, $scope.data.cols, random);
+      createUniverse.clearGrid(node);
+      createUniverse.drawGrid(node, $scope.data.startState);
+      createUniverse.makeClickable(node, $scope.data.startState);
+    }
   };
 
   // start the iterations, evolving the universe
