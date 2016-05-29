@@ -1,5 +1,5 @@
 angular.module('conway.home', [])
-.controller('HomeController', function($scope, $location, universeData, createUniverse) {
+.controller('HomeController', function($scope, $location, universeData, createUniverse, gameController) {
   // load inital data for start state of universe
   $scope.data = universeData;
 
@@ -13,11 +13,10 @@ angular.module('conway.home', [])
   createUniverse.makeClickable(node, $scope.data.startState);
  
   // update the size of universe when row and column is changed
-  // generates a new random universe of correct size
-  // clears DOM of old universe
-  // draws new universe on DOM
-  $scope.resize = function() {
-    $scope.data.startState = createUniverse.genUniverse($scope.data.rows, $scope.data.cols);
+  // generates a new universe of correct size a random one if random set to true
+  // clears DOM of old universe then draws new universe on DOM
+  $scope.resize = function(random) {
+    $scope.data.startState = createUniverse.genUniverse($scope.data.rows, $scope.data.cols, random);
     createUniverse.clearGrid(node);
     createUniverse.drawGrid(node, $scope.data.startState);
     createUniverse.makeClickable(node, $scope.data.startState);
@@ -27,15 +26,16 @@ angular.module('conway.home', [])
   // save universe start state to database
   // redirect to start page which iterates the universe
   $scope.start = function() {
-    console.log('Start', $scope.data); // debug
-    // $location.url('/start');
-    
-    // testing
-    $scope.data.startState = createUniverse.nextGeneration($scope.data.startState);
-    createUniverse.clearGrid(node);
-    createUniverse.drawGrid(node, $scope.data.startState);
+    gameController.createGame($scope.data)
+    .then(function(res) {
+      $scope.data.gameId = res.data._id;
+      $scope.data.currentState = res.data.currentState;
+      $scope.data.cycles = 0;
+    })
+    .then(function() {
+      $location.url('/start');
+    });
   };
-
 
 });
 

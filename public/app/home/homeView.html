@@ -3,21 +3,36 @@
     "The Game of Life ... is a cellular automaton devised by the British mathematician John Horton Conway in 1970.
 The 'game' is a zero-player game, meaning that its evolution is determined by its initial state, requiring no further input. One interacts with the Game of Life by creating an initial configuration and observing how it evolves, or, for advanced 'players', by creating patterns with particular properties." -- Excerpt from <a href='https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life' target="_blank">Wikipedia</a>
   </p>
+
+  <p>
+    The Conway Universe is composed of a two-dimensional grid of square cells each of which is either alive or dead. During each cylce cells interact with its eight neighbours determining its state in the next step of its evolution.  The rules governing its outcome are:
+
+    <li>Any live cell with fewer than two live neighbours dies.</li>
+    <li>Any live cell with two or three live neighbours lives.</li>
+    <li>Any live cell with more than three live neighbours dies.</li>
+    <li>Any dead cell with exactly three live neighbours becomes a live cell.</li>
+
+    <br>The rules continue to be applied repeatedly to create further generations.  
+  </p>
+
   <p>
     This application is a platform for creating your own initial condition in the Conway Universe and observing its evolution.
   </p>
   <h2>Initial State of Conway Universe</h2>
   <div class='inputs'>
     <h4>Set the size of the universe by adjusting the number of rows and columns:</h4>
-    <p>Enter number of rows: <input type='number' ng-model='data.rows' ng-change='resize()'/></p>
-    <p>Enter number of columns: <input type='number' ng-model='data.cols' ng-change='resize()'/></p>
+    <p>Enter number of rows: <input type='number' ng-model='data.rows' ng-change='resize(true)'/></p>
+    <p>Enter number of columns: <input type='number' ng-model='data.cols' ng-change='resize(true)'/></p>
     <h4>Set the rate at which the universe evolves:</h4>
     <p>Time between iterations in milliseconds: <input type='number' ng-model='data.timeIncrement'/></p>
   </div>
   <div>
     <h4>Initial State of Conway Universe</h4>
-    <p>In the universe below live cells are colored red.  Set up your initial state by clicking on a cell which toggles its state.  Click the button to commence evolutions.</p>
+    <p>In the universe below live cells are colored red.  Set up your initial state by clicking on a cell which toggles its state.  Click the 'Start Evolving' button to commence evolutions.</p>
+    <p>
+      <input type='button' value='Clear All Cells' ng-click='resize(false)'/>
+      <input type='button' value='Start Evolving' ng-click='start()'/>
+    </p>
   <div class='startState'></div>
   </div>
-  <p><input type='button' value='Start Evolving' ng-click='start()'/></p>
 </div>

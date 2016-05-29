@@ -2,9 +2,13 @@ angular.module('conway')
 .factory('createUniverse', function(){
 
   // generates an m by n matrix with 0 or 1 as entries asigned randomly
-  var genUniverse = function (m, n) {
+  var genUniverse = function (m, n, random) {
     var state = function() {
-      return Math.random() > 0.5 ? 1 : 0;
+      if(random) {
+        return Math.random() > 0.5 ? 1 : 0;
+      } else {
+        return 0;
+      }
     };
     var cells = [];
     for(var i = 0; i < m; i++) {
@@ -42,8 +46,8 @@ angular.module('conway')
 
     var svg = d3.select(node)
       .append('svg')
-      .attr('width', width )
-      .attr('height', height )
+      .attr('width', maxWidth)//width )
+      .attr('height', maxHeigth)//height )
       .selectAll('rect')
       .data(cell)
       .attr('x', function(d){return d.x * xfact;})
@@ -128,14 +132,15 @@ angular.module('conway')
     nextGeneration: nextGeneration,
     drawGrid: drawGrid,
     clearGrid: clearGrid,
-    makeClickable: makeClickable
+    makeClickable: makeClickable,
   };
 
 })
 
 .factory('universeData', function(createUniverse) {
-  var initial = createUniverse.genUniverse(10, 10);
+  var initial = createUniverse.genUniverse(10, 10, true);
   var data =  {
+    gameId: null,
     rows: 10,
     cols: 10,
     cycles: 0,
@@ -145,4 +150,35 @@ angular.module('conway')
   };
  
   return data;
+})
+
+.factory('gameController', function($http) {
+
+  var createGame = function(data) {
+    return $http({
+      method: 'POST',
+      url: 'game/create',
+      data: data
+    });
+  };
+
+  var updateGame = function(data) {
+    return $http({
+      method: 'PUT',
+      url: 'game/' + data.gameId,
+      data: data
+    });
+  };
+
+  var getGame = function(gameId) {
+    return $http({
+      method: 'GET',
+      url: 'game/' + gameId
+    });
+  };
+
+  return {
+    createGame: createGame,
+    updateGame: updateGame
+  };
 });

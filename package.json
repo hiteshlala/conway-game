@@ -1,5 +1,20 @@
 {
+  "name": "conways-game-of-life",
+  "version": "1.0.0",
+  "description": "Tool to explore Conways Game of Life Universe",
   "scripts": {
     "start": "json-server --watch db.json --routes routes.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hiteshlala/conway-game.git"
+  },
+  "author": "Hitesh Lala",
+  "license": "ISC",
+  "homepage": "https://github.com/hiteshlala/conway-game.git",
+  "dependencies": {
+    "body-parser": "^1.15.1",
+    "express": "^4.13.4",
+    "mongoose": "^4.4.19"
   }
 }

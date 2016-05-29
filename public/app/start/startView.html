@@ -1,19 +1,16 @@
 <div>
-  <a href='#/'><div>Back</div></a>
-  <p>{{data}}</p>
-  <ul>
-    <li ng-repeat='row in startState track by $index'>
-      {{row}} has elements {{$index}}
-      <ul>
-      <li ng-repeat='item in row[$index]'>
-        {{item}} should be numbers
-      </li>
-      </ul>
-    </li>
-  </ul>
-    <p>Create a clickable grid of squares using d3 each click will toggle state</p>
+  <div>
+    <p>
+      No of Evolution Cycles: {{data.cycles}}
+      <input type='button' ng-click='pause()' value="Pause"/>
+      <input type='button' ng-click='restart()' value="Restart"/>
+      <input type="button" ng-click='createNew()' value="Create New Universe"/>
+      Game ID: {{data.gameId}}
+    </p>
+  </div>  
+    
 
-    <div class='startCondition'></div>
-    <input type='button' ng-click='dosomething()' value="testing"/>
+    <div class='universe'></div>
+
 
 </div>
