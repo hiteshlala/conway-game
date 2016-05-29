@@ -1,5 +1,4 @@
 angular.module('conway', [
-  'ngCookies',
   'ngRoute',
   'conway.home',
   'conway.start'
