@@ -22,16 +22,33 @@ app.get('/game/:gameId', function(req, res) {
   .then(function(data){
     res.send(data);
   });
-
 });
 
 app.put('/game/:gameId', function(req, res) {
-  console.log('game updated'); // on server
-  
-  res.status(200);
-  res.send('updated');
+  games.updateGame(req.params.gameId, req.body)
+  .then(function(data){
+    res.status(200);
+    res.send('updated');
+  });
 });
 
+
+// thinking -- playing --- debugging
+app.get('/test/:num', function(req, res) {
+  var createPath = __dirname.split('/');
+  createPath.pop();
+  createPath = createPath.join('/');
+  createPath += '/public/test.html';
+  // console.log('from test', createPath, req.hostname, __dirname);
+  console.log('from test', req.params.num);
+  // res.sendFile(createPath);
+
+  var str = "<!DOCTYPE html><html><body><div><h1>Loading ... </h1></div><script>" +
+      "window.location.href = window.location.origin + '/#/start';" +
+      "</script></body></html>";
+  res.send(str);
+});
+// ------------till here
 
 app.listen(port, function() {
   console.log('App is listening on port 3000...');

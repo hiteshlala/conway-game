@@ -19,14 +19,21 @@ module.exports = {
     return game;
   },
 
-  updateGame: function(data) {
-
+  updateGame: function(gameId, data) {
+    return Games.findByIdAndUpdate(
+      gameId,
+      {
+        currentState: data.currentState,
+        cycles: data.cycles
+      },
+      {
+        new: true
+      }
+    );
   },
 
   getGame: function(gameId) {
-    return Games.findById(gameId, function(game) {
-      return game;
-    });
+    return Games.findById(gameId);
   }
 
 };

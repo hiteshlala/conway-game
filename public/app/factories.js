@@ -139,11 +139,11 @@ angular.module('conway')
 })
 
 .factory('universeData', function(createUniverse) {
-  var initial = createUniverse.genUniverse(10, 10, true);
+  var initial = createUniverse.genUniverse(10, 20, true);
   var data =  {
     gameId: null,
     rows: 10,
-    cols: 10,
+    cols: 20,
     cycles: 0,
     timeIncrement: 250,
     startState: initial,
