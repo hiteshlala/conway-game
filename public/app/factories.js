@@ -180,6 +180,7 @@ angular.module('conway')
 
   return {
     createGame: createGame,
-    updateGame: updateGame
+    updateGame: updateGame,
+    getGame: getGame
   };
 });

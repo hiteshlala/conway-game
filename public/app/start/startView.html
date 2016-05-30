@@ -6,12 +6,8 @@
       <input type='button' ng-click='resume()' value="Resume"/>
       <input type='button' ng-click='restart()' value="Restart From Inital Universe"/>
       <input type="button" ng-click='createNew()' value="Create New Universe"/>
-      Game ID: {{data.gameId}}
     </p>
-  </div>  
-    
-
-    <div class='universe'></div>
-
-
+    <p>Return to this Universe by using this url: http://127.0.0.1:3000/start/{{data.gameId}}</p>
+  </div>
+  <div class='universe'></div>
 </div>

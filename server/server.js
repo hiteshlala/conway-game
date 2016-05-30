@@ -20,6 +20,7 @@ app.post('/game/create', function(req, res) {
 app.get('/game/:gameId', function(req, res) {
   games.getGame(req.params.gameId)
   .then(function(data){
+    console.log('from get game ', data);
     res.send(data);
   });
 });
@@ -32,23 +33,13 @@ app.put('/game/:gameId', function(req, res) {
   });
 });
 
-
-// thinking -- playing --- debugging
-app.get('/test/:num', function(req, res) {
-  var createPath = __dirname.split('/');
-  createPath.pop();
-  createPath = createPath.join('/');
-  createPath += '/public/test.html';
-  // console.log('from test', createPath, req.hostname, __dirname);
-  console.log('from test', req.params.num);
-  // res.sendFile(createPath);
-
-  var str = "<!DOCTYPE html><html><body><div><h1>Loading ... </h1></div><script>" +
+app.get('/start/:gameId', function(req, res) {
+  var str = "<!DOCTYPE html><html><body><div><h1>Loading Universe... </h1></div><script>" +
+      'window.localStorage.setItem("conway.gameId", ' + JSON.stringify(req.params.gameId) +');'+
       "window.location.href = window.location.origin + '/#/start';" +
       "</script></body></html>";
   res.send(str);
 });
-// ------------till here
 
 app.listen(port, function() {
   console.log('App is listening on port 3000...');

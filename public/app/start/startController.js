@@ -21,12 +21,17 @@ angular.module('conway.start', [])
   var intervalId;
   var initialize = function() {
     if($scope.data.gameId) {
-      console.log('have data', $scope.data.gameId);
       intervalId = beginEvolving();
     } else {
+      var gameId = window.localStorage.getItem('conway.gameId');
+      window.localStorage.removeItem('conway.gameId');
 
-      console.log('get data', $scope.data.gameId);
-
+      gameController.getGame(gameId)
+      .then(function(game) {
+        $scope.data = game.data;
+        $scope.data.gameId = game.data._id;
+        intervalId = beginEvolving();
+      });
     }
   };
 
