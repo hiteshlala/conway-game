@@ -20,7 +20,6 @@ app.post('/game/create', function(req, res) {
 app.get('/game/:gameId', function(req, res) {
   games.getGame(req.params.gameId)
   .then(function(data){
-    console.log('from get game ', data);
     res.send(data);
   });
 });
