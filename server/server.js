@@ -43,3 +43,13 @@ app.get('/start/:gameId', function(req, res) {
 app.listen(port, function() {
   console.log('App is listening on port 3000...');
 });
+
+/*
+things to consider doing
+
+Change to updating the world on server side
+Implement UI-Bootstrap
+
+
+
+*/
