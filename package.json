@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "Tool to explore Conways Game of Life Universe",
   "scripts": {
-    "start": "json-server --watch db.json --routes routes.json"
+    "notsure": "json-server --watch db.json --routes routes.json",
+    "local": "mongod --dbpath ~/data/db & node server/server.js",
+    "digitalocean": "pm2 start server/server.js"
   },
   "repository": {
     "type": "git",
