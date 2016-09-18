@@ -69,6 +69,19 @@ angular.module('conway')
       ;
   };
 
+  // select the rectangles (cells) and update their status.
+  var updateGrid = function(node, matrix) {
+    //generate data array
+    var cell = matrix.reduce(function(prev, curr){ return prev.concat(curr); });
+    var svg = d3.select(node)
+      .selectAll('rect')
+      .data(cell)
+      .attr('fill', function(d){return d === 1 ? 'red' : 'white';})
+      ;
+    console.log('svg:', svg);
+    console.log('matrix', matrix);
+  };
+
   // remove d3 matrix from dom node
   var clearGrid = function(node) {
     d3.select(node).selectAll('*').remove();
@@ -96,7 +109,7 @@ angular.module('conway')
   // get the next generation 
   var nextGeneration = function (cells) {
     var m = cells.length;
-    var n = m > 0 ? n = cells[0].length : 0;
+    var n = m > 0 ? cells[0].length : 0;
     
     var next = genEmptyCells(m, n);
     var getValue = function(matrix, i, j) {
@@ -134,6 +147,7 @@ angular.module('conway')
     drawGrid: drawGrid,
     clearGrid: clearGrid,
     makeClickable: makeClickable,
+    updateGrid: updateGrid
   };
 
 })

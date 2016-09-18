@@ -8,8 +8,7 @@ angular.module('conway.start', [])
   var getNextGenAndDraw = function() {
     $scope.data.cycles = $scope.data.cycles + 1;
     $scope.data.currentState = createUniverse.nextGeneration($scope.data.currentState);
-    createUniverse.clearGrid(node);
-    createUniverse.drawGrid(node, $scope.data.currentState);
+    createUniverse.updateGrid(node, $scope.data.currentState);
     $scope.$apply();
     gameController.updateGame($scope.data);
   };
@@ -21,6 +20,8 @@ angular.module('conway.start', [])
   var intervalId;
   var initialize = function() {
     if($scope.data.gameId) {
+      createUniverse.clearGrid(node);
+      createUniverse.drawGrid(node, $scope.data.currentState);
       intervalId = beginEvolving();
     } else {
       var gameId = window.localStorage.getItem('conway.gameId');
@@ -30,6 +31,7 @@ angular.module('conway.start', [])
       .then(function(game) {
         $scope.data = game.data;
         $scope.data.gameId = game.data._id;
+        createUniverse.drawGrid(node, $scope.data.currentState);
         intervalId = beginEvolving();
       });
     }
