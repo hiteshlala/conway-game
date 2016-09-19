@@ -1,7 +1,8 @@
 angular.module('conway', [
   'ngRoute',
   'conway.home',
-  'conway.start'
+  'conway.start',
+  "ui.bootstrap"
 ])
 .config(function($routeProvider) {
   $routeProvider

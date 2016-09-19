@@ -1,5 +1,7 @@
 angular.module('conway')
 .factory('createUniverse', function(){
+  var aliveColor = '#5353c6';
+  var deadColor = '#fff7e0';//'#eff5f5';
 
   // generates an m by n matrix with 0 or 1 as entries asigned randomly
   var genUniverse = function (m, n, random) {
@@ -50,15 +52,10 @@ angular.module('conway')
       .attr('height', maxHeigth)//height )
       .selectAll('rect')
       .data(cell)
-      .attr('x', function(d){return d.x * xfact;})
-      .attr('y', function(d){return d.y * yfact;})
-      .attr('fill', function(){return d.alive? 'blue' : 'white';})
-      .attr('width', xfact - 2)
-      .attr('height', yfact - 2)
       .enter().append('rect')
       .attr('x', function(d){return d.x * xfact;})
       .attr('y', function(d){return d.y * yfact;})
-      .attr('fill', function(d){return d.alive? 'red' : 'white';})
+      .attr('fill', function(d){return d.alive? aliveColor : deadColor;})
       .attr('width', xfact - 1)
       .attr('height', yfact - 1)
       .attr('stroke', ' #DCDCDC')
@@ -73,10 +70,8 @@ angular.module('conway')
     var svg = d3.select(node)
       .selectAll('rect')
       .data(cell)
-      .attr('fill', function(d){return d === 1 ? 'red' : 'white';})
+      .attr('fill', function(d){return d === 1 ? aliveColor : deadColor;})
       ;
-    console.log('svg:', svg);
-    console.log('matrix', matrix);
   };
 
   // remove d3 matrix from dom node
@@ -89,7 +84,7 @@ angular.module('conway')
     d3.select(node).selectAll('rect').on('click', function(e){
       universe[e.y][e.x] = universe[e.y][e.x] ? 0 : 1;
       e.alive = e.alive ? 0 : 1;
-      var color = e.alive ? 'red' : 'white';
+      var color = e.alive ? aliveColor : deadColor;
       this.setAttribute('fill', color);
     });
   };

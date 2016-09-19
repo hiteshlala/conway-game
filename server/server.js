@@ -46,9 +46,11 @@ app.listen(port, function() {
 
 /*
 things to consider doing
-
+Using angular 1.4.9
 Change to updating the world on server side
-Implement UI-Bootstrap
+Implement UI-Bootstrap:
+  will need to include angular-animate
+
 
 
 

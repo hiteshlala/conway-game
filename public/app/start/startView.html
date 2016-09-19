@@ -1,13 +1,16 @@
 <div>
   <div>
-    <p>
-      No of Evolution Cycles: {{data.cycles}}
-      <input type='button' ng-click='pause()' value="Pause"/>
-      <input type='button' ng-click='resume()' value="Resume"/>
-      <input type='button' ng-click='restart()' value="Restart From Inital Universe"/>
-      <input type="button" ng-click='createNew()' value="Create New Universe"/>
-    </p>
-    <p>Return to this Universe by using this url: http://127.0.0.1:3000/start/{{data.gameId}}</p>
+    <div class='row'>
+      <div class='h5 col-md-3'>No of Evolution Cycles: {{data.cycles}}</div>
+      <div class='btn-group col-md-2'>
+          <input type='button' ng-click='pause()' value="Pause" class="btn btn-primary"/>
+          <input type='button' ng-click='resume()' value="Resume" class="btn btn-info"/>
+        </div>
+        <input type='button' ng-click='restart()' value="Restart From Inital Universe" class="btn btn-warning col-md-2"/>
+        <div class='col-md-1'></div>
+        <input type="button" ng-click='createNew()' value="Create New Universe" class="btn btn-danger col-md-2"/>
+    </div>
+    <div class='h6'>Return to this Universe by using this url: http://127.0.0.1:3000/start/{{data.gameId}}</div>
   </div>
   <div class='universe'></div>
 </div>
