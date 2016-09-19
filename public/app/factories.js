@@ -63,9 +63,6 @@ angular.module('conway')
       .attr('height', yfact - 1)
       .attr('stroke', ' #DCDCDC')
       .attr('stroke-width', 0.5)
-      // .on('click', function(e){toggleState(e,this);})
-      // .style('fill', 'blue');
-      // .data()
       ;
   };
 
