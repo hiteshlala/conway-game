@@ -6,7 +6,8 @@
     "notsure": "json-server --watch db.json --routes routes.json",
     "local": "mongod --dbpath ~/data/db & node server/server.js",
     "digitalocean": "pm2 start server/server.js",
-    "start": "node server/server.js"
+    "start": "node server/server.js",
+    "build": "node public/app/bundle.js"
   },
   "repository": {
     "type": "git",
