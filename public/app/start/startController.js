@@ -1,6 +1,6 @@
 angular.module('conway.start', [])
 
-.controller('StartController', function($scope, $location, createUniverse, universeData, gameController) {
+.controller('StartController', function($scope, $location, $routeParams, createUniverse, universeData, gameController) {
   $scope.data = universeData;
 
   var node = '.universe';
@@ -19,11 +19,23 @@ angular.module('conway.start', [])
 
   var intervalId;
   var initialize = function() {
+    console.log( '=> yay!!', $location.path() );
+    console.log( '=> yay!!', $routeParams.id );
     if($scope.data.gameId) {
       createUniverse.clearGrid(node);
       createUniverse.drawGrid(node, $scope.data.currentState);
       intervalId = beginEvolving();
-    } else {
+    }
+    else if( $routeParams.id ) {
+      gameController.getGame( $routeParams.id )
+      .then(function(game) {
+        $scope.data = game.data;
+        $scope.data.gameId = game.data._id;
+        createUniverse.drawGrid(node, $scope.data.currentState);
+        intervalId = beginEvolving();
+      });
+    } 
+    else {
       var gameId = window.localStorage.getItem('conway.gameId');
       window.localStorage.removeItem('conway.gameId');
 

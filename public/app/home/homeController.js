@@ -37,7 +37,7 @@ angular.module('conway.home', [])
       $scope.data.cycles = 0;
     })
     .then(function() {
-      $location.url('/start');
+      $location.url(`/start/${$scope.data.gameId}`);
     });
   };
 

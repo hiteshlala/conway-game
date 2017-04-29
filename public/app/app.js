@@ -13,5 +13,9 @@ angular.module('conway', [
     .when('/start', {
       templateUrl: 'app/start/startView.html',
       controller: 'StartController'
+    })
+    .when('/start/:id', {
+      templateUrl: 'app/start/startView.html',
+      controller: 'StartController'
     });
 });

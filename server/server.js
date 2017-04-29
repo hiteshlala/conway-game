@@ -32,6 +32,7 @@ app.put('/game/:gameId', function(req, res) {
   });
 });
 
+// this was a hacky way of setting up but I fixed it.  Left for backward compatiblity
 app.get('/start/:gameId', function(req, res) {
   var str = "<!DOCTYPE html><html><body><div><h1>Loading Universe... </h1></div><script>" +
       'window.localStorage.setItem("conway.gameId", ' + JSON.stringify(req.params.gameId) +');'+
@@ -40,7 +41,7 @@ app.get('/start/:gameId', function(req, res) {
   res.send(str);
 });
 
-app.listen(port, function() {
+app.listen( port, function() {
   console.log('App is listening on port 3000...');
 });
 
