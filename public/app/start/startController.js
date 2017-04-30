@@ -57,6 +57,7 @@ angular.module('conway.start', [])
 
   $scope.createNew = function() {
     clearInterval(intervalId);
+    $scope.data.currentState = [[]];
     $location.url('/');
   };
 

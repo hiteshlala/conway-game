@@ -289,8 +289,6 @@ angular.module('conway.start', [])
 
   var intervalId;
   var initialize = function() {
-    console.log( '=> yay!!', $location.path() );
-    console.log( '=> yay!!', $routeParams.id );
     if($scope.data.gameId) {
       createUniverse.clearGrid(node);
       createUniverse.drawGrid(node, $scope.data.currentState);
@@ -329,6 +327,7 @@ angular.module('conway.start', [])
 
   $scope.createNew = function() {
     clearInterval(intervalId);
+    $scope.data.currentState = [[]];
     $location.url('/');
   };
 
