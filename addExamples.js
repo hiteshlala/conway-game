@@ -73,5 +73,5 @@ mongo.MongoClient.connect(connectionString, ( err, database ) => {
     }
     console.log(`\nDB connected`);
     db = database;
-    restore ? restoredata() : backupdata();
+    restore ? backupdata() : restoredata();
 });
