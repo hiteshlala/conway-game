@@ -4,7 +4,7 @@
 
 > STATUS: Mostly done and partly abandoned...
 
-> Deployed Version: [conway.hiteshlala.info]](http://conway.hiteshlala.info)
+> Deployed Version: [conway.hiteshlala.info](http://conway.hiteshlala.info)
 
 The game was devised by John Horton Conway in 1970.  Read more on [Wikipedia](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life)
 
