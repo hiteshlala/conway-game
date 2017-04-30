@@ -3,6 +3,7 @@ var app = express();
 var bodyParser = require('body-parser');
 
 var mongoose = require('mongoose');
+mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost/conway');
 
 var games = require('./db/gameController.js');
