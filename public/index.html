@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
     
     <link href="images/conway.ico" rel="icon" type="image/x-icon" />
     <title>Conway Game</title>
@@ -23,17 +24,32 @@
     
   </head>
   <body>
-    <header>
-      <div class="h1 text-center">Conway Game</div>
-      <p></p>
-    </header>
-
+    <nav class="navbar navbar-default navbar-inverse" role="navigation">
+      <div class="navbar-header">
+        <ul class="navbar-nav nav-bar-left pull-left">
+          <li class="nav-bar">
+            <div class="logo-frame">
+              <a  href="/" >
+                <img class="logo" alt="coolio" src="/images/conway.ico">
+              </a>
+            </div>
+          </li>
+          
+          <li class="nav-bar" id="examples">
+            <div class="navbar-text" id="navbar-text">
+              Conway Game 
+            </div>
+          </li>
+          </ul>
+      </div>
+    </nav>
+    <div>&nbsp;</div>  
     <div ng-view class='container'></div>
 
     <div class='container text-center'> 
       <div class='h6'><a href="https://hiteshlala.github.io/">Back to Home Page</a></div> 
       <div class='h6'><a href="https://github.com/hiteshlala/conway-game">View Code on GitHub</a></div>
     </div>
-  
+    <div>&nbsp;</div>  
   </body>
 </html>
