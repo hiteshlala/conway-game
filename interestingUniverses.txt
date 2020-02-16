@@ -1,6 +1,0 @@
-some cool repeating pattern ids on deployed version
-574b84e054c98963436fa8bb
-
-
-has a repeating pattern - happened on its own
- http://162.243.110.217:3000/start/5753bd827f400406385a6532

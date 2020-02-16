@@ -1,0 +1,25 @@
+
+<div class="controls">
+  <p><input class="button" type="button" (click)="resume()" value="Start" /></p>
+  <p> <input class="button" type="button" (click)="pause()" value="Stop"/> </p>
+  <p><input class="button" type="button" (click)="reset()" value="Reset" /></p>
+  <p> Evolutions: {{ iterations }}</p>
+</div>
+
+<div class="group">
+  <app-board 
+    [state]="world"
+    [edit]="false"
+    [start]="start" 
+    [reset]="resetworld" 
+    [interval]="timeInterval"
+    (generation)="currentIteration($event)"
+  > </app-board>
+</div>
+
+<div class="center">
+  <p *ngIf="!!error" (click)="clearError()">{{ error }}</p>
+</div>
+
+
+

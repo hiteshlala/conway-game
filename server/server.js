@@ -1,59 +1,77 @@
-var express = require('express');
-var app = express();
-var bodyParser = require('body-parser');
+const express = require('express');
+const bodyParser = require('body-parser');
+const path = require( 'path' );
 
-var mongoose = require('mongoose');
-mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/conway');
+const db = require( './db.js' );
 
-var games = require('./db/gameController.js');
+const port = 3000;
+const staticAssets = path.resolve( __dirname, '../frontend/dist/frontend' );
 
-var port = 3000;
 
-app.use(bodyParser.json());
-app.use(express.static(__dirname + '/../public'));
+function createApp() {
+  return new Promise(( resolve, rejct ) => {
+  
+    const app = express();
+    
+    app.use( express.static( staticAssets ) );
+    app.use( bodyParser.json() );
+    
+    app.post('/api/game', async (req, res) => {
+      try {
+        console.log( 'Save New Game' );
+        const world = req.body.world;
+        const guid = db.createKey();
+        await db.addWorld( guid, world );
+        const newEntry = await db.getWorld( guid );
+        console.log( '     New Game:', newEntry.guid );
+        res.send({ gameId: newEntry.guid, world: newEntry.world });
+      }
+      catch( error ) {
+        res.send({ error: 'Unable To Add Game' });
+        console.error( error );
+      }
+    });
+    
+    app.get('/api/game/:gameId', async ( req, res ) => {
+      try {
+        const guid = req.params.gameId;
+        console.log( 'Get Game:', guid );
+        const game = await db.getWorld( guid );
+        if ( game ) res.send({ gameId: game.guid, world: game.world });
+        else res.send({ error: 'Game Not Found' });
+      }
+      catch( error ) {
+        res.send({ error: 'Game Not Found' });
+        console.error( error );
+      }
+    });
+    
+    // catchalls
+    app.get( '/game/:id', ( req, res ) => {
+      const guid = req.params.id;
+      console.log( 'Redirect Game:', guid )
+      res.redirect( `/?game=${guid}` );
+    });
+    app.get( '*', ( req, res ) => {
+      console.log( 'Redirect Index' );
+      res.redirect( '/' );
+    });
 
-app.post('/game/create', function(req, res) {
-  var game = games.createGame(req.body);
-  res.send(game);
-});
+    resolve( app );
+  })
+}
 
-app.get('/game/:gameId', function(req, res) {
-  games.getGame(req.params.gameId)
-  .then(function(data){
-    res.send(data);
+
+async function start() {
+  
+  await db.initialize();
+
+  const app = await createApp();
+
+  app.listen( port, function() {
+    console.log(`App is listening on port ${port}...`);
   });
-});
+}
 
-app.put('/game/:gameId', function(req, res) {
-  games.updateGame(req.params.gameId, req.body)
-  .then(function(data){
-    res.status(200);
-    res.send('updated');
-  });
-});
-
-// this was a hacky way of setting up but I fixed it.  Left for backward compatiblity
-app.get('/start/:gameId', function(req, res) {
-  var str = "<!DOCTYPE html><html><body><div><h1>Loading Universe... </h1></div><script>" +
-      'window.localStorage.setItem("conway.gameId", ' + JSON.stringify(req.params.gameId) +');'+
-      "window.location.href = window.location.origin + '/#/start';" +
-      "</script></body></html>";
-  res.send(str);
-});
-
-app.listen( port, function() {
-  console.log(`App is listening on port ${port}...`);
-});
-
-/*
-things to consider doing
-Using angular 1.4.9
-Change to updating the world on server side
-Implement UI-Bootstrap:
-  will need to include angular-animate
-
-
-
-
-*/
+start()
+.catch( console.log );

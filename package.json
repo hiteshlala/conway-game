@@ -3,11 +3,8 @@
   "version": "1.0.0",
   "description": "Tool to explore Conways Game of Life Universe",
   "scripts": {
-    "notsure": "json-server --watch db.json --routes routes.json",
-    "local": "mongod --dbpath ~/data/db & node server/server.js",
-    "digitalocean": "pm2 start server/server.js",
-    "start": "node server/server.js",
-    "build": "node public/app/bundle.js"
+    "digitalocean": "pm2 start server/server.js -n conway",
+    "start": "node server/server.js"
   },
   "repository": {
     "type": "git",
@@ -18,8 +15,7 @@
   "homepage": "https://github.com/hiteshlala/conway-game.git",
   "dependencies": {
     "body-parser": "^1.15.1",
-    "browserify": "^13.1.0",
     "express": "^4.13.4",
-    "mongoose": "^4.4.19"
+    "sqlite3": "^4.1.1"
   }
 }

@@ -1,0 +1,73 @@
+<div>
+  <p> These starting conditions eventually evolve into a cyclical state.</p>
+  
+  <div class="row">
+    <div class="group">
+      <app-board [state]="demo1" [edit]="false" [start]="demo1Run" [reset]="demo1Reset"> </app-board>
+      <div class="buttons">
+        <button (click)="startStop( 1 )"> Start/Stop </button>
+        <button (click)="reset( 1 )"> Reset </button>
+      </div>
+    </div>
+
+    <div class="group">
+      <app-board [state]="demo5" [edit]="false" [start]="demo5Run" [reset]="demo5Reset"> </app-board>
+      <div class="buttons">
+        <button (click)="startStop( 5 )"> Start/Stop </button>
+        <button (click)="reset( 5 )"> Reset </button>
+      </div>
+    </div>
+
+    <div class="group">
+      <app-board [state]="demo2" [edit]="false" [start]="demo2Run" [reset]="demo2Reset"> </app-board>
+      <div class="buttons">
+        <button (click)="startStop( 2 )"> Start/Stop </button>
+        <button (click)="reset( 2 )"> Reset </button>
+      </div>
+    </div>
+
+    <div class="group">
+      <app-board [state]="demo3" [edit]="false" [start]="demo3Run" [reset]="demo3Reset"> </app-board>
+      <div class="buttons">
+        <button (click)="startStop( 3 )"> Start/Stop </button>
+        <button (click)="reset( 3 )"> Reset </button>
+      </div>
+    </div>
+
+    <div class="group">
+      <app-board [state]="demo4" [edit]="false" [start]="demo4Run" [reset]="demo4Reset"> </app-board>
+      <div class="buttons">
+        <button (click)="startStop( 4 )"> Start/Stop </button>
+        <button (click)="reset( 4 )"> Reset </button>
+      </div>
+    </div>
+
+    <div class="group">
+      <app-board [state]="demo6" [edit]="false" [start]="demo6Run" [reset]="demo6Reset"> </app-board>
+      <div class="buttons">
+        <button (click)="startStop( 6 )"> Start/Stop </button>
+        <button (click)="reset( 6 )"> Reset </button>
+      </div>
+    </div>
+  </div>
+
+  <p> These starting conditions perpetually spawn new elements.</p>
+  <div class="column">
+    <div class="group">
+      <app-board [state]="demo7" [edit]="false" [start]="demo7Run" [reset]="demo7Reset"> </app-board>
+      <div class="buttons">
+        <button (click)="startStop( 7 )"> Start/Stop </button>
+        <button (click)="reset( 7 )"> Reset </button>
+      </div>
+    </div>
+
+    <div class="group">
+      <app-board [state]="demo8" [edit]="false" [start]="demo8Run" [reset]="demo8Reset" [interval]="0"> </app-board>
+      <div class="buttons">
+        <button (click)="startStop( 8 )"> Start/Stop </button>
+        <button (click)="reset( 8 )"> Reset </button>
+      </div>
+    </div>
+  </div>
+
+</div>

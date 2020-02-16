@@ -1,0 +1,18 @@
+<div>
+  <div *ngFor="let row of currentState; index as r" class="rowbox">
+    <div *ngFor="let cell of row; index as c" >
+       <div 
+        class="cell" 
+        (click)="toggleState( r, c )" 
+        [ngClass]="{ 
+          'alive': ( cell === 1 ),
+          'dead': ( cell === 0 ), 
+          'hoverable': canedit 
+        }"
+
+      ></div>
+    </div>
+  </div>
+</div>
+
+<!-- [ngClass]=" ( cell === 1 ) ? 'alive' : '' " -->
