@@ -1,0 +1,25 @@
+.rowbox {
+  display: flex;
+  flex-direction: row;
+  /* background-color: yellow; */
+  width: fit-content;
+}
+
+.cell {
+  width: 15px;
+  height: 15px;
+  border-radius: 3px;
+  border: 1px solid gray;
+  transition: background-color 0.3s ease;
+}
+
+.hoverable:hover {
+  opacity: 0.5;
+}
+
+.alive {
+  background-color: #5353c6;
+}
+.dead {
+  background-color: #fff7e0;
+}

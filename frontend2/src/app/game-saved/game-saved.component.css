@@ -1,0 +1,42 @@
+
+.group {
+  margin: 15px auto;
+  padding: 5px;
+  border: 1px solid #5353c6;
+  border-radius: 2%;
+  background-color: rgb(238, 234, 195);
+  width: fit-content;
+}
+
+.controls {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin: 5px 0;
+}
+
+.inputs {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin: 3px;
+}
+.inputs input {
+  width: 100px;
+}
+
+p {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.button {
+  color: #5353c6;
+  border-radius: 5px;
+  background-color: rgb(176, 207, 207);
+  border: 1px solid gray;
+  margin: 1px;
+}
+
+.button:hover {
+  background-color: #a2adad;
+}

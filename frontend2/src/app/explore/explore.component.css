@@ -1,0 +1,40 @@
+.column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.group {
+  margin: 15px 0;
+  padding: 5px;
+  border: 1px solid #5353c6;
+  border-radius: 2%;
+  background-color: rgb(238, 234, 195);
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin: 5px 0;
+}
+
+.buttons button {
+  color: #5353c6;
+  border-radius: 5px;
+  background-color: rgb(176, 207, 207);
+  border: 1px solid gray;
+  margin: 1px;
+}
+
+.buttons button:hover {
+  background-color: #a2adad;
+}

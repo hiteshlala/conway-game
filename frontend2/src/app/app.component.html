@@ -1,0 +1,29 @@
+<div class="wrapper">
+  <nav>
+    <div class="logo">
+      <a routerLink="/" >
+        <img class="logo" src="conway.ico">
+      </a>
+    </div>
+    <div class="title"> Conway Game </div>
+    <div class="space"></div>
+    
+    <!-- <div  class="nav-item"> <a routerLink="/"> Summary </a> </div> -->
+    <!-- <div  class="nav-item"> <a routerLink="/explore"> Explore </a> </div> -->
+    <!-- <div class="nav-item"> <a routerLink="/game"> Play </a> </div> -->
+
+    <div *ngIf="router.url !== '/'" class="nav-item"> <a routerLink="/"> Summary </a> </div>
+    <div *ngIf="router.url !== '/explore'" class="nav-item"> <a routerLink="/explore"> Explore </a> </div>
+    <div *ngIf="router.url !== '/game'" class="nav-item"> <a routerLink="/game"> Play </a> </div>
+
+
+    <div class="last"></div>
+  </nav>
+  <div class="content">
+    <router-outlet></router-outlet>
+  </div>
+  <div class="space"></div>
+  <div class="footer">
+    <a href="https://hiteshlala.com" > &copy; 2016 - {{year}} Hitesh Lala</a>
+  </div>
+</div>

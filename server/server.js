@@ -5,8 +5,7 @@ const path = require( 'path' );
 const db = require( './db.js' );
 
 const port = 3000;
-const staticAssets = path.resolve( __dirname, '../frontend/dist/frontend' );
-
+const staticAssets = path.resolve( __dirname, '../frontend2/dist/frontend2' );
 
 function createApp() {
   return new Promise(( resolve, rejct ) => {

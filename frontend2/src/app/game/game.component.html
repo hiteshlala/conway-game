@@ -1,0 +1,38 @@
+
+<div>
+  <p>Set the parameters of the universe: </p>
+  <div class='inputs'>
+    <p>Rows: <input type="number" [(ngModel)]="rows" /></p>
+    <p>Columns: <input type="number" [(ngModel)]="columns" /></p>
+  </div>
+  <div class='inputs'>
+    <p>Interval: <input type="number" [(ngModel)]="timeInterval"/></p>
+    <p>Create a blank universe: <input type="checkbox" [(ngModel)]="blank"/></p>
+  </div>
+  <p>Click on cells to toggle their state. </p>
+</div>
+<div class="controls">
+  <p><input class="button" type="button" (click)="resume()" value="Start" /></p>
+  <p> <input class="button" type="button" (click)="pause()" value="Stop"/> </p>
+  <p><input class="button" type="button" (click)="reset()" value="Reset" /></p>
+  <p> Evolutions: {{ iterations }}</p>
+</div>
+
+<div class="group">
+  <app-board 
+    [blank]="blank" 
+    [start]="start" 
+    [reset]="resetworld" 
+    [rows]="rows" 
+    [columns]="columns" 
+    [interval]="timeInterval"
+    (generation)="currentIteration( $event )"
+    (world)="startingWorld( $event )"
+  > </app-board>
+</div>
+
+<div class="center">
+  <p *ngIf="!saved"><input class="button" type="button" (click)="save()" value="Save" /></p>
+  <p *ngIf="saved">{{ url }}</p>
+  <p *ngIf="!!error" (click)="clearError()">{{ error }}</p>
+</div>

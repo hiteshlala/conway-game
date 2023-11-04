@@ -1,0 +1,90 @@
+nav {
+  display: flex;
+  flex-direction: row;
+  background-color: #6c9393;
+  line-height: 50px;
+  flex-wrap: nowrap;
+  height: 50px;
+}
+
+.logo {
+  width: 50px;
+  height: 50px;
+  box-sizing: border-box;
+}
+
+.title {
+  font-size: 24px;
+  margin: 0 10px;
+  color:  #f2f2f2;
+  overflow: hidden;
+}
+
+@media screen and (max-width: 450px) {
+  .title {
+    display: none;
+  }
+}
+
+.content {
+  margin: 0 150px;
+}
+@media screen and (max-width: 960px) {
+  .content {
+    margin: 0 100px;
+  }
+}
+@media screen and (max-width: 600px) {
+  .content {
+    margin: 0 20px;
+  }
+}
+
+.space {
+  flex-grow: 1;
+}
+
+.nav-item {
+  margin: 0 5px;
+  overflow: hidden;
+}
+
+.selected {
+  color: #5353c6;
+}
+.last {
+  min-width: 8px;
+}
+
+a {
+  text-decoration: none;
+}
+
+.footer {
+  margin-top: 20px;
+  background-color: rgb(176, 207, 207);
+  text-align: center;
+  height: 50px;
+  line-height: 50px;
+}
+
+.wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 
+@my-background: #E0FFFF;
+@my-fontcolor: #5353c6;
+@my-headercolor: #6c9393;
+@my-navbartextcolor: #f2f2f2; 
+
+material-ui break points
+xs: 0
+sm: 600
+md: 960
+lg: 1280
+xl: 1920
+
+*/
